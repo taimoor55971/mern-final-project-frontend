@@ -18,26 +18,45 @@ jobs:
         with:
           node-version: '16.16'
 
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
       - name: Install dependencies
         run: npm install
 
       - name: Build Vite app
         run: npm run build
-      - name: List files at root
-        run: ls /home/runner/work/mern-final-project-frontend/mern-final-project-frontend
 
+  find-dist:
+    needs: build
+    runs-on: ubuntu-latest
 
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
+    steps:
+      - name: Find dist directory
+        run: |
+          dist_path=$(find . -type d -name "dist" -print -quit)
+          echo "Found dist directory at: $dist_path"
+        shell: bash
 
-  #   steps:
-  #     - name: Deploy to Netlify
-  #       run: |
+  deploy:
+    needs: find-dist
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Echo NETLIFY_SITE_ID
+        run: echo ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: Deploy to Netlify
+        run: |
+          npm install -g netlify-cli
+          netlify login
           
-  #         npm install -g netlify-cli
-  #         netlify login
-  #         cd mern-final-project-frontend
-  #         netlify deploy --dir=dist --prod
-  #       env:
-  #         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify link --id 27fc336a-a42d-4621-a616-fda30f97aebd
+          netlify deploy --dir="$dist_path" --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
