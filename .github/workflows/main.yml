@@ -47,7 +47,7 @@ jobs:
       - name: Deploy to Netlify
         run: |
           npm install -g netlify-cli
-          netlify login --open
+          netlify login 
           netlify link --id 27fc336a-a42d-4621-a616-fda30f97aebd
           netlify deploy --dir=dist --prod
         env:
