@@ -29,9 +29,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Echo NETLIFY_SITE_ID
+        run: echo ${{ secrets.NETLIFY_SITE_ID }}
+
       - name: Deploy to Netlify
         run: |
-          npm install -g netlify-cli -g
+          npm install -g netlify-cli
           netlify login
           
           netlify link --id ${{ secrets.NETLIFY_SITE_ID }}
