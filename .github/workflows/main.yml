@@ -24,7 +24,7 @@ jobs:
       - name: Build Vite app
         run: npm run build
       - name: List files at root
-        run: ls /home/runner/work/mern-final-project-frontend
+        run: ls /home/runner/work/mern-final-project-frontend/mern-final-project-frontend
 
 
   # deploy:
