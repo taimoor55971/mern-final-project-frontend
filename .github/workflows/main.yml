@@ -24,6 +24,18 @@ jobs:
       - name: Build Vite app
         run: npm run build
 
+      # Check if the dist directory exists
+      - name: Check dist directory
+        run: |
+          if [ -d "dist" ]; then
+            echo "dist directory exists."
+            
+          else
+            ls -la  # List all files in the current directory
+            echo "dist directory does not exist."
+            exit 1
+          fi
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -35,10 +47,8 @@ jobs:
       - name: Deploy to Netlify
         run: |
           npm install -g netlify-cli
-          netlify login
-          
+          netlify login --open
           netlify link --id 27fc336a-a42d-4621-a616-fda30f97aebd
-
           netlify deploy --dir=dist --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
