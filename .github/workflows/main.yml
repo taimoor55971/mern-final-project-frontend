@@ -33,7 +33,8 @@ jobs:
         run: |
           npm install -g netlify-cli -g
           netlify login
-          netlify sites:list
-          netlify deploy --site ${{ secrets.NETLIFY_SITE_ID }} --dir=dist --prod
+          
+          netlify link --site ${{ secrets.NETLIFY_SITE_ID }}
+          netlify deploy --dir=dist --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
