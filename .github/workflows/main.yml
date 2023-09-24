@@ -23,17 +23,21 @@ jobs:
 
       - name: Build Vite app
         run: npm run build
+      - name: List files at root
+        run: ls /
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Deploy to Netlify
-        run: |
-          npm install -g netlify-cli
-          netlify login
-          cd mern-final-project-frontend
-          netlify deploy --dir=dist --prod
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Deploy to Netlify
+  #       run: |
+          
+  #         npm install -g netlify-cli
+  #         netlify login
+  #         cd mern-final-project-frontend
+  #         netlify deploy --dir=dist --prod
+  #       env:
+  #         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
