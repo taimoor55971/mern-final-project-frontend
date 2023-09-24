@@ -4,7 +4,7 @@ import UpdateProduct from "./pages/UpdateProduct";
 
 import ViewOrders from "./pages/viewOrders.jsx";
 import ViewProducts from "./pages/viewProducts";
-import ViewUser from "./pages/viewUser";
+import ViewUser from "./pages/ViewUser";
 
 export const sellerRoutes = [
   {
