@@ -39,7 +39,7 @@ const Search = ({ onSearch }) => {
       <input
         className="p-2 border rounded-l-lg w-full max-w-md focus:outline-none"
         type="text"
-        placeholder="Search products..."
+        placeholder="Write the product name"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
