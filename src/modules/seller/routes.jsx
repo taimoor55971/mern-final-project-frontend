@@ -1,6 +1,6 @@
 import Upload from "./pages/Upload";
 import AddProduct from "./pages/addproduct";
-import UpdateProduct from "./pages/updateProduct";
+import UpdateProduct from "./pages/UpdateProduct";
 
 import ViewOrders from "./pages/viewOrders.jsx";
 import ViewProducts from "./pages/viewProducts";
