@@ -57,6 +57,6 @@ jobs:
           netlify login
           
           netlify link --id 27fc336a-a42d-4621-a616-fda30f97aebd
-          netlify deploy --dir=/mern-final-project-frontend --prod
+          netlify deploy --dir=/home/runner/work/mern-final-project-frontend/mern-final-project-frontend --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
